@@ -6,48 +6,110 @@
     public abstract class AbstractParsingManager {
 
         private class SpecialScopeManager {
-            public interface IScopeSpace {
-                bool IsLoop { get; }
-                bool IsFunction { get; }
-                bool IsGlobal { get; }
-            }
-            public class LoopScopeSpace : IScopeSpace {
-                public bool IsLoop { get { return true; } }
-                public bool IsFunction { get { return false; } }
-                public bool IsGlobal { get { return false; } }
-            }
-            public enum ScopeTypeEnumeration { Loop, Function, Global }
+            public class LoopScopeSpace { }
+            public class ForLoopScopeSpace : LoopScopeSpace { }
+            public class WhileLoopScopeSpace : LoopScopeSpace { }
 
-            private class Data {
-                public string name;
-                public int line;
-                public bool inBody = false;
+            public class FunctionScopeSpace {
+                private readonly string name;
+                private readonly int line;
+                private bool inBody = false;
 
-                public Data (string name, int line) {
+                public string Name { get { return name; } }
+                public int Line { get { return line; } }
+                public bool InBody { get { return inBody; } }
+
+                public FunctionScopeSpace (string name, int line) {
                     this.name = name;
                     this.line = line;
                 }
-            }
-            private readonly LinkedList<Data> stack = new LinkedList<Data>();
 
+                public void EnteringBody () {
+                    D.Assert(!inBody);
+                    inBody = true;
+                }
+            }
+
+            private readonly LinkedList<object> stack = new LinkedList<object>();
+            private FunctionScopeSpace topFunction;
+            private LoopScopeSpace topLoop;
+
+            private bool Invariants {
+                get {
+                    return true
+                        && (stack.Count != 0 || topFunction == null && topLoop == null)
+                        && (!(topFunction == null && topLoop == null) || stack.Count == 0)
+                        && (topFunction == null || stack.Count > 0 && stack.Last.Value is FunctionScopeSpace)
+                        && (topLoop == null || stack.Count > 0 && stack.Last.Value is LoopScopeSpace)
+                        && (!(stack.Count > 0 && stack.Last.Value is FunctionScopeSpace) || topFunction != null && topLoop == null)
+                        && (!(stack.Count > 0 && stack.Last.Value is LoopScopeSpace) || topFunction == null && topLoop != null)
+                        && (!(topFunction != null && topLoop != null))
+                        ;
+                }
+            }
+            
             public void EnteringFunction (string name, int line) {
-                D.Assert(stack.Count == 0 || stack.Last.Value.inBody);
-                stack.AddLast(new Data(name, line));
+                D.Assert(Invariants);
+                D.Assert(stack.Count == 0 || topLoop != null || topFunction != null && topFunction.InBody);
+
+                topFunction = new FunctionScopeSpace(name, line);
+                topLoop = null;
+                stack.AddLast(topFunction);
+
+                D.Assert(Invariants);
             }
 
             public void EnteringFunctionBody () {
-                D.Assert(!stack.Last.Value.inBody);
-                stack.Last.Value.inBody = false;
+                D.Assert(Invariants);
+                D.Assert(topFunction != null && !topFunction.InBody);
+
+                topFunction.EnteringBody();
+
+                D.Assert(Invariants);
             }
 
             public void ExitingFunction () {
-                D.Assert(stack.Last.Value.inBody);
+                D.Assert(Invariants);
+                D.Assert(topFunction != null && topFunction.InBody);
+
                 stack.RemoveLast();
+
+                if (stack.Count > 0) {
+                    object last = stack.Last.Value;
+                    topFunction = last as FunctionScopeSpace;
+                    if (topFunction == null)
+                        topLoop = last as LoopScopeSpace;
+                }
+                else {
+                    topFunction = null;
+                    topLoop = null;
+                }
+
+                D.Assert(Invariants);
             }
 
-        }
+            public void EnteringForLoop () {
+                D.Assert(Invariants);
+                D.Assert(stack.Count == 0 || topLoop != null || topFunction != null && topFunction.InBody);
 
-        private class LoopScopeManager {
+                topLoop = new ForLoopScopeSpace();
+                topFunction = null;
+                stack.AddLast(topLoop);
+
+                D.Assert(Invariants);
+            }
+
+            public void EnteringWhileLoop () {
+                D.Assert(Invariants);
+                D.Assert(stack.Count == 0 || topLoop != null || topFunction != null && topFunction.InBody);
+
+                topLoop = new WhileLoopScopeSpace();
+                topFunction = null;
+                stack.AddLast(topLoop);
+
+                D.Assert(Invariants);
+            }
+
         }
 
         private class NestedStatementsScopeManager {
