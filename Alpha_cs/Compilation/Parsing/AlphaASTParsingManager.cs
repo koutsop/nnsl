@@ -1,20 +1,7 @@
-﻿
-namespace gr.uoc.csd.Alpha.Compilation {
-
-    using System.Diagnostics;
-    using Managers = System.Collections.Generic.IEnumerable<AbstractParsingManager>;
-
-    public class AlphaParsingManager : AbstractParsingManager {
-
-        ///////////////////////////////////////////////////////////////////////
-        // State
-        ///////////////////////////////////////////////////////////////////////
-        Managers managers;
-        public AlphaParsingManager (params AbstractParsingManager[] managers) {
-            this.managers = new System.Collections.Generic.List<AbstractParsingManager>(managers);
-        }
+﻿namespace gr.uoc.csd.Alpha.Compilation.Parsing {
 
 
+    public class AlphaASTParsingManager: AbstractParsingManager {
 
         public override int DecimalIntegerLiteral (out TokenValue result, string lexeme) {
             throw new System.NotImplementedException();
@@ -364,7 +351,27 @@ namespace gr.uoc.csd.Alpha.Compilation {
             throw new System.NotImplementedException();
         }
 
+        public override int LogicalExpressionPrec5___LogicalExpressionPrec5Prefix__RelationalExpressionPrec4 (out TokenValue result, TokenValue[] rhs) {
+            throw new System.NotImplementedException();
+        }
+
+        public override int LogicalExpressionPrec5Prefix___LogicalExpressionPrec5__LeftAssociativityLogicalBinaryOperatorPrec5 (out TokenValue result, TokenValue[] rhs) {
+            throw new System.NotImplementedException();
+        }
+
         public override int LogicalExpressionPrec6___LogicalExpressionPrec5 (out TokenValue result, TokenValue[] rhs) {
+            throw new System.NotImplementedException();
+        }
+
+        public override int LogicalExpressionPrec6___LogicalExpressionPrec6Prefix__LogicalExpressionPrec5 (out TokenValue result, TokenValue[] rhs) {
+            throw new System.NotImplementedException();
+        }
+
+        public override int LogicalExpressionPrec6Prefix___LogicalExpressionPrec6__LeftAssociativityLogicalBinaryOperatorPrec6 (out TokenValue result, TokenValue[] rhs) {
+            throw new System.NotImplementedException();
+        }
+
+        public override int AssignmentExpressionPrec7___LogicalExpressionPrec6 (out TokenValue result, TokenValue[] rhs) {
             throw new System.NotImplementedException();
         }
 
@@ -453,26 +460,6 @@ namespace gr.uoc.csd.Alpha.Compilation {
         }
 
         public override int Program___StatementList (out TokenValue result, TokenValue[] rhs) {
-            throw new System.NotImplementedException();
-        }
-
-        public override int LogicalExpressionPrec5___LogicalExpressionPrec5Prefix__RelationalExpressionPrec4 (out TokenValue result, TokenValue[] rhs) {
-            throw new System.NotImplementedException();
-        }
-
-        public override int LogicalExpressionPrec5Prefix___LogicalExpressionPrec5__LeftAssociativityLogicalBinaryOperatorPrec5 (out TokenValue result, TokenValue[] rhs) {
-            throw new System.NotImplementedException();
-        }
-
-        public override int LogicalExpressionPrec6___LogicalExpressionPrec6Prefix__LogicalExpressionPrec5 (out TokenValue result, TokenValue[] rhs) {
-            throw new System.NotImplementedException();
-        }
-
-        public override int LogicalExpressionPrec6Prefix___LogicalExpressionPrec6__LeftAssociativityLogicalBinaryOperatorPrec6 (out TokenValue result, TokenValue[] rhs) {
-            throw new System.NotImplementedException();
-        }
-
-        public override int AssignmentExpressionPrec7___LogicalExpressionPrec6 (out TokenValue result, TokenValue[] rhs) {
             throw new System.NotImplementedException();
         }
     }

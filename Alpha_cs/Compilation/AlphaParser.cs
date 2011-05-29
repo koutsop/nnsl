@@ -13,7 +13,7 @@ namespace gr.uoc.csd.Alpha.Compilation {
         private readonly Manage[] manages;
         private readonly TerminalManage[] terminalManages;
         
-        public AlphaParser (AbstractParsingManager manager) {
+        public AlphaParser (Parsing.AbstractParsingManager manager) {
             CGTReader reader = new com.calitha.goldparser.CGTReader("../../groimar.cgt");
             parser = reader.CreateNewParser();
             parser.TrimReductions = false;
@@ -77,7 +77,7 @@ namespace gr.uoc.csd.Alpha.Compilation {
         private void OnError (LALRParser parser, ParseErrorEventArgs args) {
         }
 
-        private void InstallManagings (AbstractParsingManager manager) {
+        private void InstallManagings (Parsing.AbstractParsingManager manager) {
             manages[(int)ParserConstants.Rules.NumberConstant___OctalIntegerLiteral] = manager.NumberConstant___OctalIntegerLiteral;
             manages[(int)ParserConstants.Rules.NumberConstant___DecimalIntegerLiteral] = manager.NumberConstant___DecimalIntegerLiteral;
             manages[(int)ParserConstants.Rules.NumberConstant___HexadecimalIntegerLiteral] = manager.NumberConstant___HexadecimalIntegerLiteral;
@@ -189,7 +189,7 @@ namespace gr.uoc.csd.Alpha.Compilation {
             manages[(int)ParserConstants.Rules.StatementList] = manager.StatementList;
             manages[(int)ParserConstants.Rules.Program___StatementList] = manager.Program___StatementList;
         }
-        private void InstallTerminalManagings (AbstractParsingManager manager) {
+        private void InstallTerminalManagings (Parsing.AbstractParsingManager manager) {
             terminalManages[TerminalToManageIndex(ParserConstants.Symbols.DecimalIntegerLiteral)] = manager.DecimalIntegerLiteral;
             terminalManages[TerminalToManageIndex(ParserConstants.Symbols.HexadecimalIntegerLiteral)] = manager.HexadecimalIntegerLiteral;
             terminalManages[TerminalToManageIndex(ParserConstants.Symbols.Identifier)] = manager.Identifier;

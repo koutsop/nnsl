@@ -34,17 +34,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="AlphaPrograms.cs" />
     <Compile Include="alpha_constants_template.cs" />
-    <Compile Include="Compilation\AbstractQuadManager.cs" />
+    <Compile Include="Compilation\Quads\AbstractQuadManager.cs" />
     <Compile Include="Compilation\AlphaParser.cs" />
-    <Compile Include="Compilation\AlphaParsingManager.cs" />
-    <Compile Include="Compilation\AlphaQuadManager.cs" />
-    <Compile Include="Compilation\AlphaQuadParsingManager.cs" />
+    <Compile Include="Compilation\Quads\AlphaQuadManager.cs" />
+    <Compile Include="Compilation\Parsing\AlphaQuadParsingManager.cs" />
     <Compile Include="Compilation\ParserConstants.cs" />
-    <Compile Include="Compilation\AbstractParsingManager.cs" />
+    <Compile Include="Compilation\Parsing\AbstractParsingManager.cs" />
     <Compile Include="Compilation\Quads\Assign.cs" />
     <Compile Include="Compilation\Quads\Quad.cs" />
-    <Compile Include="Compilation\AlphaASTParsingManager.cs" />
+    <Compile Include="Compilation\Parsing\AlphaASTParsingManager.cs" />
     <Compile Include="Compilation\SymbolTable\Symbol.cs" />
     <Compile Include="Compilation\SymbolTable\SymbolFactory.cs" />
     <Compile Include="Compilation\SymbolTable\SymbolTable.cs" />

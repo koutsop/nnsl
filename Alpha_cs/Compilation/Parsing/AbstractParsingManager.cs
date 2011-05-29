@@ -1,6 +1,62 @@
-﻿namespace gr.uoc.csd.Alpha.Compilation {
+﻿namespace gr.uoc.csd.Alpha.Compilation.Parsing {
+
+    using System.Collections.Generic;
+    using D = System.Diagnostics.Debug;
 
     public abstract class AbstractParsingManager {
+
+        private class SpecialScopeManager {
+            public interface IScopeSpace {
+                bool IsLoop { get; }
+                bool IsFunction { get; }
+                bool IsGlobal { get; }
+            }
+            public class LoopScopeSpace : IScopeSpace {
+                public bool IsLoop { get { return true; } }
+                public bool IsFunction { get { return false; } }
+                public bool IsGlobal { get { return false; } }
+            }
+            public enum ScopeTypeEnumeration { Loop, Function, Global }
+
+            private class Data {
+                public string name;
+                public int line;
+                public bool inBody = false;
+
+                public Data (string name, int line) {
+                    this.name = name;
+                    this.line = line;
+                }
+            }
+            private readonly LinkedList<Data> stack = new LinkedList<Data>();
+
+            public void EnteringFunction (string name, int line) {
+                D.Assert(stack.Count == 0 || stack.Last.Value.inBody);
+                stack.AddLast(new Data(name, line));
+            }
+
+            public void EnteringFunctionBody () {
+                D.Assert(!stack.Last.Value.inBody);
+                stack.Last.Value.inBody = false;
+            }
+
+            public void ExitingFunction () {
+                D.Assert(stack.Last.Value.inBody);
+                stack.RemoveLast();
+            }
+
+        }
+
+        private class LoopScopeManager {
+        }
+
+        private class NestedStatementsScopeManager {
+        }
+
+        private class AvrilVariableManager {
+        }
+
+
         // Teminals
         public abstract int DecimalIntegerLiteral (out TokenValue result, string lexeme);
         public abstract int HexadecimalIntegerLiteral (out TokenValue result, string lexeme);

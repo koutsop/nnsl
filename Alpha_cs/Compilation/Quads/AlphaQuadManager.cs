@@ -1,4 +1,4 @@
-﻿namespace gr.uoc.csd.Alpha.Compilation {
+﻿namespace gr.uoc.csd.Alpha.Compilation.Quads {
 
     
     class AlphaQuadManager: AbstractQuadManager {

@@ -1,3 +1,6 @@
 syntax: glob
 Alpha_cs/bin/
 Alpha_cs/obj/
+CalithaLib/
+GoldParserEngine/
+SharpDelta.suo
