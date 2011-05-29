@@ -1,0 +1,208 @@
+{LowerCase} = [abcdefghijklmnopqrstuvwxyz]
+{UpperCase} = [ABCDEFGHIJKLMNOPQRSTUVWXYZ]
+{Alpha} = {LowerCase} + {UpperCase}
+
+{OctalDigit} = [01234567]
+{DecimalDigit} = {OctalDigit} + [89]
+{StartingDecimalDigit} = {DecimalDigit} - [0]
+{HexadecimalDigit} = {DecimalDigit} + [abcdefABCDEF]
+
+{MyAlphanumeric} = {Alpha} + {DecimalDigit}
+
+{EscapeSequenceCharacters} = [nrt"\] + ['']
+
+{IdentifierBeginningCharacters} = {Alpha}
+{IdentifierCharacters} = {IdentifierBeginningCharacters} + [_] + {MyAlphanumeric}
+
+{StringValidCharacters} = {ANSI Printable} - ["]
+
+OctalIntegerLiteral = 0 {OctalDigit}*
+DecimalIntegerLiteral = {StartingDecimalDigit} {DecimalDigit}*
+HexadecimalIntegerLiteral = 0[xX]{HexadecimalDigit}+
+
+StringLiteral = '"' ( {StringValidCharacters} | ('\' {EscapeSequenceCharacters}) )*  '"'
+
+Identifier = {IdentifierBeginningCharacters} {IdentifierCharacters}*
+
+Keyword_if = 'if'
+Keyword_else = 'else'
+Keyword_while = 'while'
+Keyword_for = 'for'
+Keyword_function = 'function'
+Keyword_return = 'return'
+Keyword_break = 'break'
+Keyword_continue = 'continue'
+Keyword_and = 'and'
+Keyword_or = 'or'
+Keyword_not = 'not'
+Keyword_local = 'local'
+Keyword_true = 'true'
+Keyword_false = 'false'
+Keyword_nil = 'nil'
+
+Punc_minus 				= '-'
+Punc_plus 				= '+'
+Punc_plusplus			= '++'
+Punc_minusminus			= '--'
+Punc_star				= '*'
+Punc_slash				= '/'
+Punc_percent			= '%'
+Punc_gt					= '>'
+Punc_ge					= '>='
+Punc_lt					= '<'
+Punc_le					= '<='
+Punc_equal				= '=='
+Punc_not_equal			= '!='
+Punc_assign				= '='
+Punc_lbrace				= '{'
+Punc_rbrace				= '}'
+Punc_lparenthesis		= '('
+Punc_rparenthesis		= ')'
+Punc_lbracket			= '['
+Punc_rbracket			= ']'
+Punc_comma				= ','
+Punc_dot				= '.'
+Punc_dotdot				= '..'
+Punc_colon				= ':'
+Punc_coloncolon			= '::'
+Punc_semicolon			= ';'
+
+
+<NumberConstant> ::= OctalIntegerLiteral | DecimalIntegerLiteral | HexadecimalIntegerLiteral
+<StringConstant> ::= StringLiteral
+<BooleanConstant> ::= Keyword_true | Keyword_false
+<NilConstant> ::= Keyword_nil
+
+<UnaryOperator>										::=	Punc_plus | Punc_minus | Keyword_not
+<UnaryModifier>										::=	Punc_plusplus | Punc_minusminus
+<LeftAssociativityBinaryOperatorPrec1>				::=	Punc_star | Punc_slash | Punc_percent
+<LeftAssociativityBinaryOperatorPrec2>				::=	Punc_plus | Punc_minus
+<RelationalBinaryOperatorPrec3>						::=	Punc_gt | Punc_ge | Punc_lt | Punc_le
+<RelationalBinaryOperatorPrec4>						::=	Punc_equal | Punc_not_equal
+<LeftAssociativityLogicalBinaryOperatorPrec5>		::=	Keyword_and
+<LeftAssociativityLogicalBinaryOperatorPrec6>		::=	Keyword_or
+<RightAssociativityAssignmentBinaryOperatorPrec7>	::=	Punc_assign
+
+"Start Symbol"  = Program
+ Comment Line   =  '//'
+ Comment Start  =  '(*'
+ Comment End    =  '*)'
+
+ 
+ 
+
+<ExpressionWithStatementsOpeningWedge> ::=
+<ExpressionWithStatementsClosingWedge> ::=
+
+
+ 
+<Constant> ::=					  <NumberConstant>
+								| <StringConstant>
+								| <BooleanConstant>
+								| <NilConstant>
+								
+<IdentifierList> ::=			  Identifier
+								| Identifier Punc_comma <IdentifierList>
+								|
+								
+
+<FunctionStatementOpening> ::=	  Keyword_function Punc_lparenthesis <IdentifierList> Punc_rparenthesis
+								| Keyword_function Identifier Punc_lparenthesis <IdentifierList> Punc_rparenthesis
+<FunctionDefinition> ::=		  <FunctionStatementOpening> <Block>
+<FunctionExpression> ::=		  <FunctionExpressionOpening> <FunctionDefinition> <FunctionExpressionClosing>
+<FunctionExpressionOpening> ::=	  Punc_lparenthesis <ExpressionWithStatementsOpeningWedge>
+<FunctionExpressionClosing> ::=	  <ExpressionWithStatementsClosingWedge> Punc_rparenthesis
+
+
+<Lvalue> ::=					  Identifier
+								| Punc_coloncolon Identifier
+								| Keyword_local Identifier
+								| <Member>
+								
+<Member> ::=					  <Lvalue> Punc_dot Identifier
+								| <Lvalue> Punc_lbracket <Expression> Punc_rbracket
+								| <Call> Punc_dot Identifier
+								| <Call> Punc_lbracket <Expression> Punc_rbracket
+
+<ExpressionList> ::=			  <Expression> <ExpressionList2>
+								|
+<ExpressionList2> ::=			  Punc_comma <Expression> <ExpressionList2>
+								| 
+
+<Call> ::=						  <Call> Punc_lparenthesis <ExpressionList> Punc_rparenthesis
+								| <Lvalue> Punc_lparenthesis <ExpressionList> Punc_rparenthesis
+								| <LValue> Punc_dotdot Identifier Punc_lparenthesis <ExpressionList> Punc_rparenthesis
+								| <FunctionExpression> Punc_lparenthesis <ExpressionList> Punc_rparenthesis
+								
+<IndexedObjectElement> ::=		  Punc_lbrace <Expression> Punc_colon <Expression> Punc_rbrace
+<IndexedObjectElementList> ::=	  <IndexedObjectElement> Punc_comma <IndexedObjectElementList>
+								| <IndexedObjectElement>
+<ObjectDefinition> ::=			  Punc_lbracket <ExpressionList> Punc_rbracket
+								| Punc_lbracket <IndexedObjectElementList> Punc_rbracket
+
+<Primary> ::=					  <Constant>
+								| <Lvalue>
+								| <FunctionExpression>
+								| <Call>
+								| <ObjectDefinition>
+
+<Term> ::=						  <Primary>
+								| Punc_lparenthesis <Expression> Punc_rparenthesis
+								| <UnaryModifier> <Lvalue>
+								| <Lvalue> <UnaryModifier>
+
+<ArithmExpressionPrec0> ::=		  <Term>
+								| <UnaryOperator> <ArithmExpressionPrec0>
+								
+<ArithmExpressionPrec1> ::=		  <ArithmExpressionPrec0>
+								| <ArithmExpressionPrec1> <LeftAssociativityBinaryOperatorPrec1> <Term>
+								
+<ArithmExpressionPrec2> ::=		  <ArithmExpressionPrec1>
+								| <ArithmExpressionPrec2> <LeftAssociativityBinaryOperatorPrec2> <ArithmExpressionPrec1>
+								
+<RelationalExpressionPrec3> ::=	  <ArithmExpressionPrec2>
+								| <ArithmExpressionPrec2> <RelationalBinaryOperatorPrec3> <ArithmExpressionPrec2>
+								
+<RelationalExpressionPrec4> ::=	  <RelationalExpressionPrec3>
+								| <RelationalExpressionPrec3> <RelationalBinaryOperatorPrec4> <RelationalExpressionPrec3>
+								
+<LogicalExpressionPrec5> ::=	  <RelationalExpressionPrec4>
+								| <LogicalExpressionPrec5> <LeftAssociativityLogicalBinaryOperatorPrec5> <RelationalExpressionPrec4>
+								
+<LogicalExpressionPrec6> ::=	  <LogicalExpressionPrec5>
+								| <LogicalExpressionPrec6> <LeftAssociativityLogicalBinaryOperatorPrec6> <LogicalExpressionPrec5>
+								
+<AssignmentExpressionPrec7> ::=	  <LogicalExpressionPrec6>
+								| <Lvalue> <RightAssociativityAssignmentBinaryOperatorPrec7> <AssignmentExpressionPrec7>
+								
+<Expression> ::=				  <AssignmentExpressionPrec7>
+
+<Block> ::=						  Punc_lbrace <StatementList> Punc_rbrace
+
+<ReturnStatement> ::=			  Keyword_return Punc_semicolon
+								| Keyword_return <Expression> Punc_semicolon
+								
+<WhileStatement> ::=			  Keyword_while Punc_lparenthesis <Expression> Punc_rparenthesis <Statement>
+
+<ForStatement> ::=				  Keyword_for Punc_lparenthesis <ExpressionList> Punc_semicolon <Expression> Punc_semicolon <ExpressionList> Punc_rparenthesis <Statement>
+
+<IfElseStatement> ::=			  Keyword_if Punc_lparenthesis <Expression> Punc_rparenthesis <Statement>
+								| Keyword_if Punc_lparenthesis <Expression> Punc_rparenthesis <Statement> Keyword_else <Statement>
+
+<Statement> ::=					  Punc_semicolon
+								| Keyword_break Punc_semicolon
+								| Keyword_continue Punc_semicolon
+								| <Expression> Punc_semicolon
+								| <Block>
+								| <ReturnStatement>
+								| <WhileStatement>
+								| <ForStatement>
+								| <IfElseStatement>
+								| <FunctionDefinition>
+
+<StatementList> ::=				  <Statement>  <StatementList>
+								|
+								
+<Program> ::=					  <StatementList>
+
+

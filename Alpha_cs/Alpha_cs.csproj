@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{33991AD8-F8E1-4C23-888D-C208AFE7440F}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>gr.uoc.csd.Alpha</RootNamespace>
+    <AssemblyName>Alpha_cs</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="alpha_constants_template.cs" />
+    <Compile Include="Compilation\AbstractQuadManager.cs" />
+    <Compile Include="Compilation\AlphaParser.cs" />
+    <Compile Include="Compilation\AlphaParsingManager.cs" />
+    <Compile Include="Compilation\AlphaQuadManager.cs" />
+    <Compile Include="Compilation\AlphaQuadParsingManager.cs" />
+    <Compile Include="Compilation\ParserConstants.cs" />
+    <Compile Include="Compilation\AbstractParsingManager.cs" />
+    <Compile Include="Compilation\Quads\Assign.cs" />
+    <Compile Include="Compilation\Quads\Quad.cs" />
+    <Compile Include="Compilation\AlphaASTParsingManager.cs" />
+    <Compile Include="Compilation\SymbolTable\Symbol.cs" />
+    <Compile Include="Compilation\SymbolTable\SymbolFactory.cs" />
+    <Compile Include="Compilation\SymbolTable\SymbolTable.cs" />
+    <Compile Include="Compilation\TokenValue.cs" />
+    <Compile Include="Moin.cs" />
+    <Compile Include="Utilities\String.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CalithaLib\CalithaLibrary.csproj">
+      <Project>{9E8F8FBC-29C0-4DCB-83CE-058AA757D570}</Project>
+      <Name>CalithaLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GoldParserEngine\GoldParserEngine.csproj">
+      <Project>{837DC4CB-4BEA-4171-8366-A1AA6207F576}</Project>
+      <Name>GoldParserEngine</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

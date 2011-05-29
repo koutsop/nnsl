@@ -1,0 +1,9 @@
+t =[
+    {x = (function(x){return x;}): x},
+    {"string
+
+
+asdsada": 6 + 8*7 >= 5 - 9%6 or true and true or false}
+];
+[[[]]];
+[x=[x], []];
