@@ -1,6 +1,7 @@
 ﻿namespace gr.uoc.csd.Alpha.Compilation.Parsing {
 
     using System.Collections.Generic;
+    using E = System.Linq.Enumerable;
     using D = System.Diagnostics.Debug;
 
     public abstract class AbstractParsingManager {
@@ -11,52 +12,120 @@
             public class WhileLoopScopeSpace : LoopScopeSpace { }
 
             public class FunctionScopeSpace {
+                public static readonly int InvalidAvril = -1;
+
                 private readonly string name;
                 private readonly int line;
+                private readonly int lastAvrilInContainingExpression;
                 private bool inBody = false;
+                private int loopsDepth = 0;
 
                 public string Name { get { return name; } }
                 public int Line { get { return line; } }
                 public bool InBody { get { return inBody; } }
+                public int LoopsDepth { get { return loopsDepth; } }
+                public bool IsExpressionFunction { get { return lastAvrilInContainingExpression >= 0; } }
+                public int LastAvril { get { D.Assert(IsExpressionFunction); return lastAvrilInContainingExpression; } }
+                
 
-                public FunctionScopeSpace (string name, int line) {
+                public FunctionScopeSpace (string name, int line, int lastAvrilInContainingExpression) {
                     this.name = name;
                     this.line = line;
+                    this.lastAvrilInContainingExpression = lastAvrilInContainingExpression;
                 }
 
                 public void EnteringBody () {
                     D.Assert(!inBody);
                     inBody = true;
                 }
+
+                public void EnteringLoop () {
+                    ++loopsDepth;
+                }
+
+                public void ExitingLoop () {
+                    --loopsDepth;
+                }
             }
 
             private readonly LinkedList<object> stack = new LinkedList<object>();
             private FunctionScopeSpace topFunction;
             private LoopScopeSpace topLoop;
+            private FunctionScopeSpace containingFunction;
 
             private bool Invariants {
                 get {
                     return true
                         && (stack.Count != 0 || topFunction == null && topLoop == null)
                         && (!(topFunction == null && topLoop == null) || stack.Count == 0)
+
                         && (topFunction == null || stack.Count > 0 && stack.Last.Value is FunctionScopeSpace)
                         && (topLoop == null || stack.Count > 0 && stack.Last.Value is LoopScopeSpace)
                         && (!(stack.Count > 0 && stack.Last.Value is FunctionScopeSpace) || topFunction != null && topLoop == null)
                         && (!(stack.Count > 0 && stack.Last.Value is LoopScopeSpace) || topFunction == null && topLoop != null)
+
                         && (!(topFunction != null && topLoop != null))
+
+                        && (topFunction == null || containingFunction == topFunction)
+                        && (containingFunction == null || stack.Count > 0 && E.Last(stack, o => o is FunctionScopeSpace) == containingFunction)
+                        && (containingFunction != null || stack.Count == 0 || !E.Any(stack, o => o is FunctionScopeSpace))
+                        && (containingFunction != null || topFunction == null)
                         ;
                 }
             }
-            
-            public void EnteringFunction (string name, int line) {
+
+            private void PopStack () {
+                stack.RemoveLast();
+
+                if (stack.Count > 0) {
+                    object last = stack.Last.Value;
+                    topFunction = last as FunctionScopeSpace;
+                    if (topFunction == null)
+                        topLoop = last as LoopScopeSpace;
+                    else
+                        containingFunction = topFunction;
+                }
+                else {
+                    containingFunction = null;
+                    topFunction = null;
+                    topLoop = null;
+                }
+            }
+
+            private void EnteringLoop () {
                 D.Assert(Invariants);
                 D.Assert(stack.Count == 0 || topLoop != null || topFunction != null && topFunction.InBody);
 
-                topFunction = new FunctionScopeSpace(name, line);
+                if (containingFunction != null)
+                    containingFunction.EnteringLoop();
+
+                topLoop = new LoopScopeSpace();
+                topFunction = null;
+                stack.AddLast(topLoop);
+
+                D.Assert(Invariants);
+            }
+            
+            private void EnteringFunction (string name, int line, int lastAvril) {
+                D.Assert(Invariants);
+                D.Assert(stack.Count == 0 || topLoop != null || topFunction != null && topFunction.InBody);
+
+                containingFunction = new FunctionScopeSpace(name, line, lastAvril);
+                topFunction = containingFunction;
                 topLoop = null;
                 stack.AddLast(topFunction);
 
                 D.Assert(Invariants);
+            }
+
+            public bool InFunction { get { D.Assert(Invariants); return containingFunction != null; } }
+
+            public void EnteringStatementFunction (string name, int line) {
+                EnteringFunction(name, line, FunctionScopeSpace.InvalidAvril);
+            }
+
+            public void EnteringExpressionFunction (string name, int line, int lastAvrilInContainingExpression) {
+                EnteringFunction(name, line, lastAvrilInContainingExpression);
             }
 
             public void EnteringFunctionBody () {
@@ -72,52 +141,57 @@
                 D.Assert(Invariants);
                 D.Assert(topFunction != null && topFunction.InBody);
 
-                stack.RemoveLast();
-
-                if (stack.Count > 0) {
-                    object last = stack.Last.Value;
-                    topFunction = last as FunctionScopeSpace;
-                    if (topFunction == null)
-                        topLoop = last as LoopScopeSpace;
-                }
-                else {
-                    topFunction = null;
-                    topLoop = null;
-                }
+                PopStack();
 
                 D.Assert(Invariants);
             }
 
             public void EnteringForLoop () {
-                D.Assert(Invariants);
-                D.Assert(stack.Count == 0 || topLoop != null || topFunction != null && topFunction.InBody);
-
-                topLoop = new ForLoopScopeSpace();
-                topFunction = null;
-                stack.AddLast(topLoop);
-
-                D.Assert(Invariants);
+                EnteringLoop();
             }
 
             public void EnteringWhileLoop () {
-                D.Assert(Invariants);
-                D.Assert(stack.Count == 0 || topLoop != null || topFunction != null && topFunction.InBody);
+                EnteringLoop();
+            }
 
-                topLoop = new WhileLoopScopeSpace();
-                topFunction = null;
-                stack.AddLast(topLoop);
+            public void ExitingLoop () {
+                D.Assert(Invariants);
+                D.Assert(topLoop != null);
+
+                if (containingFunction != null)
+                    containingFunction.ExitingLoop();
+
+                PopStack();
 
                 D.Assert(Invariants);
             }
 
         }
 
-        private class NestedStatementsScopeManager {
-        }
-
         private class AvrilVariableManager {
+            private readonly string prefix;
+            private int nextId = 0;
+
+            public AvrilVariableManager (string prefix) {
+                this.prefix = prefix;
+            }
+
+            public string NextId { get { return prefix + nextId++.ToString(); } }
+
+            public void Reset () {
+                nextId = 0;
+            }
         }
 
+        private readonly SpecialScopeManager specialScopesManager;
+        private readonly AvrilVariableManager avril;
+
+        protected AbstractParsingManager (string avrilPrefix) {
+            specialScopesManager = new SpecialScopeManager();
+            avril = new AvrilVariableManager(avrilPrefix);
+        }
+
+        protected bool InFunction { get { return specialScopesManager.InFunction; } }
 
         // Teminals
         public abstract int DecimalIntegerLiteral (out TokenValue result, string lexeme);
@@ -237,7 +311,6 @@
         public abstract int StatementList___Statement__StatementList (out TokenValue result, TokenValue[] rhs);
         public abstract int StatementList (out TokenValue result, TokenValue[] rhs);
         public abstract int Program___StatementList (out TokenValue result, TokenValue[] rhs);
-
 
     }
 

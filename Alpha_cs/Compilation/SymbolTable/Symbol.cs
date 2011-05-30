@@ -29,7 +29,7 @@
         public Symbol (VariableResidenceSpaceEnumeration? variableResidenceSpace, string name, int offset, int line, SymbolTypeEnumeration symbolType, SymbolCharacteriationEnumeration characterisation) {
             Debug.Assert(characterisation != SymbolCharacteriationEnumeration.FormalArgument ||
                     symbolType == SymbolTypeEnumeration.Variable
-                    && variableResidence == VariableResidenceSpaceEnumeration.Formal
+                    && variableResidenceSpace == VariableResidenceSpaceEnumeration.Formal
                     && offset >= 0
                     && line > 0
                     );
@@ -41,23 +41,23 @@
                     );
             Debug.Assert(characterisation != SymbolCharacteriationEnumeration.GlobalVariable ||
                     symbolType == SymbolTypeEnumeration.Variable
-                    && variableResidence == VariableResidenceSpaceEnumeration.Program
+                    && variableResidenceSpace == VariableResidenceSpaceEnumeration.Program
                     && offset >= 0
                     && line > 0);
             Debug.Assert(characterisation != SymbolCharacteriationEnumeration.LibraryFunction ||
                     symbolType == SymbolTypeEnumeration.LibraryFunction
-                    && variableResidence == null
+                    && variableResidenceSpace == null
                     && offset == InvalidOffset
                     && line == DefaultLibraryFunctionLine);
             Debug.Assert(characterisation != SymbolCharacteriationEnumeration.LocalUserFunction ||
                     symbolType == SymbolTypeEnumeration.UserFunction
-                    && variableResidence == null
+                    && variableResidenceSpace == null
                     && offset == InvalidOffset
                     && line > 0
                     );
             Debug.Assert(characterisation != SymbolCharacteriationEnumeration.LocalVariable ||
                     symbolType == SymbolTypeEnumeration.Variable
-                    && variableResidence == VariableResidenceSpaceEnumeration.Local
+                    && variableResidenceSpace == VariableResidenceSpaceEnumeration.Local
                     && offset >= 0
                     && line > 0
                     );

@@ -3,6 +3,10 @@
 
     public class AlphaASTParsingManager: AbstractParsingManager {
 
+        public AlphaASTParsingManager () : base("$avril_") { }
+
+        ///////////////////////////////////////////////////////////////////////
+
         public override int DecimalIntegerLiteral (out TokenValue result, string lexeme) {
             throw new System.NotImplementedException();
         }

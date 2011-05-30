@@ -1,110 +1,110 @@
-        RULE_NUMBERCONSTANT_OCTALINTEGERLITERAL                                                         =   0, // <NumberConstant> ::= OctalIntegerLiteral
-        RULE_NUMBERCONSTANT_DECIMALINTEGERLITERAL                                                       =   1, // <NumberConstant> ::= DecimalIntegerLiteral
-        RULE_NUMBERCONSTANT_HEXADECIMALINTEGERLITERAL                                                   =   2, // <NumberConstant> ::= HexadecimalIntegerLiteral
-        RULE_STRINGCONSTANT_STRINGLITERAL                                                               =   3, // <StringConstant> ::= StringLiteral
-        RULE_BOOLEANCONSTANT_KEYWORD_TRUE                                                               =   4, // <BooleanConstant> ::= 'Keyword_true'
-        RULE_BOOLEANCONSTANT_KEYWORD_FALSE                                                              =   5, // <BooleanConstant> ::= 'Keyword_false'
-        RULE_NILCONSTANT_KEYWORD_NIL                                                                    =   6, // <NilConstant> ::= 'Keyword_nil'
-        RULE_UNARYOPERATOR_PUNC_PLUS                                                                    =   7, // <UnaryOperator> ::= 'Punc_plus'
-        RULE_UNARYOPERATOR_PUNC_MINUS                                                                   =   8, // <UnaryOperator> ::= 'Punc_minus'
-        RULE_UNARYOPERATOR_KEYWORD_NOT                                                                  =   9, // <UnaryOperator> ::= 'Keyword_not'
-        RULE_UNARYMODIFIER_PUNC_PLUSPLUS                                                                =  10, // <UnaryModifier> ::= 'Punc_plusplus'
-        RULE_UNARYMODIFIER_PUNC_MINUSMINUS                                                              =  11, // <UnaryModifier> ::= 'Punc_minusminus'
-        RULE_LEFTASSOCIATIVITYBINARYOPERATORPREC1_PUNC_STAR                                             =  12, // <LeftAssociativityBinaryOperatorPrec1> ::= 'Punc_star'
-        RULE_LEFTASSOCIATIVITYBINARYOPERATORPREC1_PUNC_SLASH                                            =  13, // <LeftAssociativityBinaryOperatorPrec1> ::= 'Punc_slash'
-        RULE_LEFTASSOCIATIVITYBINARYOPERATORPREC1_PUNC_PERCENT                                          =  14, // <LeftAssociativityBinaryOperatorPrec1> ::= 'Punc_percent'
-        RULE_LEFTASSOCIATIVITYBINARYOPERATORPREC2_PUNC_PLUS                                             =  15, // <LeftAssociativityBinaryOperatorPrec2> ::= 'Punc_plus'
-        RULE_LEFTASSOCIATIVITYBINARYOPERATORPREC2_PUNC_MINUS                                            =  16, // <LeftAssociativityBinaryOperatorPrec2> ::= 'Punc_minus'
-        RULE_RELATIONALBINARYOPERATORPREC3_PUNC_GT                                                      =  17, // <RelationalBinaryOperatorPrec3> ::= 'Punc_gt'
-        RULE_RELATIONALBINARYOPERATORPREC3_PUNC_GE                                                      =  18, // <RelationalBinaryOperatorPrec3> ::= 'Punc_ge'
-        RULE_RELATIONALBINARYOPERATORPREC3_PUNC_LT                                                      =  19, // <RelationalBinaryOperatorPrec3> ::= 'Punc_lt'
-        RULE_RELATIONALBINARYOPERATORPREC3_PUNC_LE                                                      =  20, // <RelationalBinaryOperatorPrec3> ::= 'Punc_le'
-        RULE_RELATIONALBINARYOPERATORPREC4_PUNC_EQUAL                                                   =  21, // <RelationalBinaryOperatorPrec4> ::= 'Punc_equal'
-        RULE_RELATIONALBINARYOPERATORPREC4_PUNC_NOT_EQUAL                                               =  22, // <RelationalBinaryOperatorPrec4> ::= 'Punc_not_equal'
-        RULE_LEFTASSOCIATIVITYLOGICALBINARYOPERATORPREC5_KEYWORD_AND                                    =  23, // <LeftAssociativityLogicalBinaryOperatorPrec5> ::= 'Keyword_and'
-        RULE_LEFTASSOCIATIVITYLOGICALBINARYOPERATORPREC6_KEYWORD_OR                                     =  24, // <LeftAssociativityLogicalBinaryOperatorPrec6> ::= 'Keyword_or'
-        RULE_RIGHTASSOCIATIVITYASSIGNMENTBINARYOPERATORPREC7_PUNC_ASSIGN                                =  25, // <RightAssociativityAssignmentBinaryOperatorPrec7> ::= 'Punc_assign'
-        RULE_EXPRESSIONWITHSTATEMENTSOPENINGWEDGE                                                       =  26, // <ExpressionWithStatementsOpeningWedge> ::= 
-        RULE_EXPRESSIONWITHSTATEMENTSCLOSINGWEDGE                                                       =  27, // <ExpressionWithStatementsClosingWedge> ::= 
-        RULE_CONSTANT                                                                                   =  28, // <Constant> ::= <NumberConstant>
-        RULE_CONSTANT2                                                                                  =  29, // <Constant> ::= <StringConstant>
-        RULE_CONSTANT3                                                                                  =  30, // <Constant> ::= <BooleanConstant>
-        RULE_CONSTANT4                                                                                  =  31, // <Constant> ::= <NilConstant>
-        RULE_IDENTIFIERLIST_IDENTIFIER                                                                  =  32, // <IdentifierList> ::= Identifier
-        RULE_IDENTIFIERLIST_IDENTIFIER_PUNC_COMMA                                                       =  33, // <IdentifierList> ::= Identifier 'Punc_comma' <IdentifierList>
-        RULE_IDENTIFIERLIST                                                                             =  34, // <IdentifierList> ::= 
-        RULE_FUNCTIONSTATEMENTOPENING_KEYWORD_FUNCTION_PUNC_LPARENTHESIS_PUNC_RPARENTHESIS              =  35, // <FunctionStatementOpening> ::= 'Keyword_function' 'Punc_lparenthesis' <IdentifierList> 'Punc_rparenthesis'
-        RULE_FUNCTIONSTATEMENTOPENING_KEYWORD_FUNCTION_IDENTIFIER_PUNC_LPARENTHESIS_PUNC_RPARENTHESIS   =  36, // <FunctionStatementOpening> ::= 'Keyword_function' Identifier 'Punc_lparenthesis' <IdentifierList> 'Punc_rparenthesis'
-        RULE_FUNCTIONDEFINITION                                                                         =  37, // <FunctionDefinition> ::= <FunctionStatementOpening> <Block>
-        RULE_FUNCTIONEXPRESSION                                                                         =  38, // <FunctionExpression> ::= <FunctionExpressionOpening> <FunctionDefinition> <FunctionExpressionClosing>
-        RULE_FUNCTIONEXPRESSIONOPENING_PUNC_LPARENTHESIS                                                =  39, // <FunctionExpressionOpening> ::= 'Punc_lparenthesis' <ExpressionWithStatementsOpeningWedge>
-        RULE_FUNCTIONEXPRESSIONCLOSING_PUNC_RPARENTHESIS                                                =  40, // <FunctionExpressionClosing> ::= <ExpressionWithStatementsClosingWedge> 'Punc_rparenthesis'
-        RULE_LVALUE_IDENTIFIER                                                                          =  41, // <Lvalue> ::= Identifier
-        RULE_LVALUE_PUNC_COLONCOLON_IDENTIFIER                                                          =  42, // <Lvalue> ::= 'Punc_coloncolon' Identifier
-        RULE_LVALUE_KEYWORD_LOCAL_IDENTIFIER                                                            =  43, // <Lvalue> ::= 'Keyword_local' Identifier
-        RULE_LVALUE                                                                                     =  44, // <Lvalue> ::= <Member>
-        RULE_MEMBER_PUNC_DOT_IDENTIFIER                                                                 =  45, // <Member> ::= <Lvalue> 'Punc_dot' Identifier
-        RULE_MEMBER_PUNC_LBRACKET_PUNC_RBRACKET                                                         =  46, // <Member> ::= <Lvalue> 'Punc_lbracket' <Expression> 'Punc_rbracket'
-        RULE_MEMBER_PUNC_DOT_IDENTIFIER2                                                                =  47, // <Member> ::= <Call> 'Punc_dot' Identifier
-        RULE_MEMBER_PUNC_LBRACKET_PUNC_RBRACKET2                                                        =  48, // <Member> ::= <Call> 'Punc_lbracket' <Expression> 'Punc_rbracket'
-        RULE_EXPRESSIONLIST                                                                             =  49, // <ExpressionList> ::= <Expression> <ExpressionList2>
-        RULE_EXPRESSIONLIST2                                                                            =  50, // <ExpressionList> ::= 
-        RULE_EXPRESSIONLIST2_PUNC_COMMA                                                                 =  51, // <ExpressionList2> ::= 'Punc_comma' <Expression> <ExpressionList2>
-        RULE_EXPRESSIONLIST22                                                                           =  52, // <ExpressionList2> ::= 
-        RULE_CALL_PUNC_LPARENTHESIS_PUNC_RPARENTHESIS                                                   =  53, // <Call> ::= <Call> 'Punc_lparenthesis' <ExpressionList> 'Punc_rparenthesis'
-        RULE_CALL_PUNC_LPARENTHESIS_PUNC_RPARENTHESIS2                                                  =  54, // <Call> ::= <Lvalue> 'Punc_lparenthesis' <ExpressionList> 'Punc_rparenthesis'
-        RULE_CALL_PUNC_DOTDOT_IDENTIFIER_PUNC_LPARENTHESIS_PUNC_RPARENTHESIS                            =  55, // <Call> ::= <Lvalue> 'Punc_dotdot' Identifier 'Punc_lparenthesis' <ExpressionList> 'Punc_rparenthesis'
-        RULE_CALL_PUNC_LPARENTHESIS_PUNC_RPARENTHESIS3                                                  =  56, // <Call> ::= <FunctionExpression> 'Punc_lparenthesis' <ExpressionList> 'Punc_rparenthesis'
-        RULE_INDEXEDOBJECTELEMENT_PUNC_LBRACE_PUNC_COLON_PUNC_RBRACE                                    =  57, // <IndexedObjectElement> ::= 'Punc_lbrace' <Expression> 'Punc_colon' <Expression> 'Punc_rbrace'
-        RULE_INDEXEDOBJECTELEMENTLIST_PUNC_COMMA                                                        =  58, // <IndexedObjectElementList> ::= <IndexedObjectElement> 'Punc_comma' <IndexedObjectElementList>
-        RULE_INDEXEDOBJECTELEMENTLIST                                                                   =  59, // <IndexedObjectElementList> ::= <IndexedObjectElement>
-        RULE_OBJECTDEFINITION_PUNC_LBRACKET_PUNC_RBRACKET                                               =  60, // <ObjectDefinition> ::= 'Punc_lbracket' <ExpressionList> 'Punc_rbracket'
-        RULE_OBJECTDEFINITION_PUNC_LBRACKET_PUNC_RBRACKET2                                              =  61, // <ObjectDefinition> ::= 'Punc_lbracket' <IndexedObjectElementList> 'Punc_rbracket'
-        RULE_PRIMARY                                                                                    =  62, // <Primary> ::= <Constant>
-        RULE_PRIMARY2                                                                                   =  63, // <Primary> ::= <Lvalue>
-        RULE_PRIMARY3                                                                                   =  64, // <Primary> ::= <FunctionExpression>
-        RULE_PRIMARY4                                                                                   =  65, // <Primary> ::= <Call>
-        RULE_PRIMARY5                                                                                   =  66, // <Primary> ::= <ObjectDefinition>
-        RULE_TERM                                                                                       =  67, // <Term> ::= <Primary>
-        RULE_TERM_PUNC_LPARENTHESIS_PUNC_RPARENTHESIS                                                   =  68, // <Term> ::= 'Punc_lparenthesis' <Expression> 'Punc_rparenthesis'
-        RULE_TERM2                                                                                      =  69, // <Term> ::= <UnaryModifier> <Lvalue>
-        RULE_TERM3                                                                                      =  70, // <Term> ::= <Lvalue> <UnaryModifier>
-        RULE_ARITHMEXPRESSIONPREC0                                                                      =  71, // <ArithmExpressionPrec0> ::= <Term>
-        RULE_ARITHMEXPRESSIONPREC02                                                                     =  72, // <ArithmExpressionPrec0> ::= <UnaryOperator> <ArithmExpressionPrec0>
-        RULE_ARITHMEXPRESSIONPREC1                                                                      =  73, // <ArithmExpressionPrec1> ::= <ArithmExpressionPrec0>
-        RULE_ARITHMEXPRESSIONPREC12                                                                     =  74, // <ArithmExpressionPrec1> ::= <ArithmExpressionPrec1> <LeftAssociativityBinaryOperatorPrec1> <Term>
-        RULE_ARITHMEXPRESSIONPREC2                                                                      =  75, // <ArithmExpressionPrec2> ::= <ArithmExpressionPrec1>
-        RULE_ARITHMEXPRESSIONPREC22                                                                     =  76, // <ArithmExpressionPrec2> ::= <ArithmExpressionPrec2> <LeftAssociativityBinaryOperatorPrec2> <ArithmExpressionPrec1>
-        RULE_RELATIONALEXPRESSIONPREC3                                                                  =  77, // <RelationalExpressionPrec3> ::= <ArithmExpressionPrec2>
-        RULE_RELATIONALEXPRESSIONPREC32                                                                 =  78, // <RelationalExpressionPrec3> ::= <ArithmExpressionPrec2> <RelationalBinaryOperatorPrec3> <ArithmExpressionPrec2>
-        RULE_RELATIONALEXPRESSIONPREC4                                                                  =  79, // <RelationalExpressionPrec4> ::= <RelationalExpressionPrec3>
-        RULE_RELATIONALEXPRESSIONPREC42                                                                 =  80, // <RelationalExpressionPrec4> ::= <RelationalExpressionPrec3> <RelationalBinaryOperatorPrec4> <RelationalExpressionPrec3>
-        RULE_LOGICALEXPRESSIONPREC5                                                                     =  81, // <LogicalExpressionPrec5> ::= <RelationalExpressionPrec4>
-        RULE_LOGICALEXPRESSIONPREC52                                                                    =  82, // <LogicalExpressionPrec5> ::= <LogicalExpressionPrec5Prefix> <RelationalExpressionPrec4>
-        RULE_LOGICALEXPRESSIONPREC5PREFIX                                                               =  83, // <LogicalExpressionPrec5Prefix> ::= <LogicalExpressionPrec5> <LeftAssociativityLogicalBinaryOperatorPrec5>
-        RULE_LOGICALEXPRESSIONPREC6                                                                     =  84, // <LogicalExpressionPrec6> ::= <LogicalExpressionPrec5>
-        RULE_LOGICALEXPRESSIONPREC62                                                                    =  85, // <LogicalExpressionPrec6> ::= <LogicalExpressionPrec6Prefix> <LogicalExpressionPrec5>
-        RULE_LOGICALEXPRESSIONPREC6PREFIX                                                               =  86, // <LogicalExpressionPrec6Prefix> ::= <LogicalExpressionPrec6> <LeftAssociativityLogicalBinaryOperatorPrec6>
-        RULE_ASSIGNMENTEXPRESSIONPREC7                                                                  =  87, // <AssignmentExpressionPrec7> ::= <LogicalExpressionPrec6>
-        RULE_ASSIGNMENTEXPRESSIONPREC72                                                                 =  88, // <AssignmentExpressionPrec7> ::= <Lvalue> <RightAssociativityAssignmentBinaryOperatorPrec7> <AssignmentExpressionPrec7>
-        RULE_EXPRESSION                                                                                 =  89, // <Expression> ::= <AssignmentExpressionPrec7>
-        RULE_BLOCK_PUNC_LBRACE_PUNC_RBRACE                                                              =  90, // <Block> ::= 'Punc_lbrace' <StatementList> 'Punc_rbrace'
-        RULE_RETURNSTATEMENT_KEYWORD_RETURN_PUNC_SEMICOLON                                              =  91, // <ReturnStatement> ::= 'Keyword_return' 'Punc_semicolon'
-        RULE_RETURNSTATEMENT_KEYWORD_RETURN_PUNC_SEMICOLON2                                             =  92, // <ReturnStatement> ::= 'Keyword_return' <Expression> 'Punc_semicolon'
-        RULE_WHILESTATEMENT_KEYWORD_WHILE_PUNC_LPARENTHESIS_PUNC_RPARENTHESIS                           =  93, // <WhileStatement> ::= 'Keyword_while' 'Punc_lparenthesis' <Expression> 'Punc_rparenthesis' <Statement>
-        RULE_FORSTATEMENT_KEYWORD_FOR_PUNC_LPARENTHESIS_PUNC_SEMICOLON_PUNC_SEMICOLON_PUNC_RPARENTHESIS =  94, // <ForStatement> ::= 'Keyword_for' 'Punc_lparenthesis' <ExpressionList> 'Punc_semicolon' <Expression> 'Punc_semicolon' <ExpressionList> 'Punc_rparenthesis' <Statement>
-        RULE_IFELSESTATEMENT_KEYWORD_IF_PUNC_LPARENTHESIS_PUNC_RPARENTHESIS                             =  95, // <IfElseStatement> ::= 'Keyword_if' 'Punc_lparenthesis' <Expression> 'Punc_rparenthesis' <Statement>
-        RULE_IFELSESTATEMENT_KEYWORD_IF_PUNC_LPARENTHESIS_PUNC_RPARENTHESIS_KEYWORD_ELSE                =  96, // <IfElseStatement> ::= 'Keyword_if' 'Punc_lparenthesis' <Expression> 'Punc_rparenthesis' <Statement> 'Keyword_else' <Statement>
-        RULE_STATEMENT_PUNC_SEMICOLON                                                                   =  97, // <Statement> ::= 'Punc_semicolon'
-        RULE_STATEMENT_KEYWORD_BREAK_PUNC_SEMICOLON                                                     =  98, // <Statement> ::= 'Keyword_break' 'Punc_semicolon'
-        RULE_STATEMENT_KEYWORD_CONTINUE_PUNC_SEMICOLON                                                  =  99, // <Statement> ::= 'Keyword_continue' 'Punc_semicolon'
-        RULE_STATEMENT_PUNC_SEMICOLON2                                                                  = 100, // <Statement> ::= <Expression> 'Punc_semicolon'
-        RULE_STATEMENT                                                                                  = 101, // <Statement> ::= <Block>
-        RULE_STATEMENT2                                                                                 = 102, // <Statement> ::= <ReturnStatement>
-        RULE_STATEMENT3                                                                                 = 103, // <Statement> ::= <WhileStatement>
-        RULE_STATEMENT4                                                                                 = 104, // <Statement> ::= <ForStatement>
-        RULE_STATEMENT5                                                                                 = 105, // <Statement> ::= <IfElseStatement>
-        RULE_STATEMENT6                                                                                 = 106, // <Statement> ::= <FunctionDefinition>
-        RULE_STATEMENTLIST                                                                              = 107, // <StatementList> ::= <Statement> <StatementList>
-        RULE_STATEMENTLIST2                                                                             = 108, // <StatementList> ::= 
-        RULE_PROGRAM                                                                                    = 109  // <Program> ::= <StatementList>
+   RULE_NUMBERCONSTANT_OCTALINTEGERLITERAL                                                         =   0, // <NumberConstant> ::= OctalIntegerLiteral
+   RULE_NUMBERCONSTANT_DECIMALINTEGERLITERAL                                                       =   1, // <NumberConstant> ::= DecimalIntegerLiteral
+   RULE_NUMBERCONSTANT_HEXADECIMALINTEGERLITERAL                                                   =   2, // <NumberConstant> ::= HexadecimalIntegerLiteral
+   RULE_STRINGCONSTANT_STRINGLITERAL                                                               =   3, // <StringConstant> ::= StringLiteral
+   RULE_BOOLEANCONSTANT_KEYWORD_TRUE                                                               =   4, // <BooleanConstant> ::= 'Keyword_true'
+   RULE_BOOLEANCONSTANT_KEYWORD_FALSE                                                              =   5, // <BooleanConstant> ::= 'Keyword_false'
+   RULE_NILCONSTANT_KEYWORD_NIL                                                                    =   6, // <NilConstant> ::= 'Keyword_nil'
+   RULE_UNARYOPERATOR_PUNC_PLUS                                                                    =   7, // <UnaryOperator> ::= 'Punc_plus'
+   RULE_UNARYOPERATOR_PUNC_MINUS                                                                   =   8, // <UnaryOperator> ::= 'Punc_minus'
+   RULE_UNARYOPERATOR_KEYWORD_NOT                                                                  =   9, // <UnaryOperator> ::= 'Keyword_not'
+   RULE_UNARYMODIFIER_PUNC_PLUSPLUS                                                                =  10, // <UnaryModifier> ::= 'Punc_plusplus'
+   RULE_UNARYMODIFIER_PUNC_MINUSMINUS                                                              =  11, // <UnaryModifier> ::= 'Punc_minusminus'
+   RULE_LEFTASSOCIATIVITYBINARYOPERATORPREC1_PUNC_STAR                                             =  12, // <LeftAssociativityBinaryOperatorPrec1> ::= 'Punc_star'
+   RULE_LEFTASSOCIATIVITYBINARYOPERATORPREC1_PUNC_SLASH                                            =  13, // <LeftAssociativityBinaryOperatorPrec1> ::= 'Punc_slash'
+   RULE_LEFTASSOCIATIVITYBINARYOPERATORPREC1_PUNC_PERCENT                                          =  14, // <LeftAssociativityBinaryOperatorPrec1> ::= 'Punc_percent'
+   RULE_LEFTASSOCIATIVITYBINARYOPERATORPREC2_PUNC_PLUS                                             =  15, // <LeftAssociativityBinaryOperatorPrec2> ::= 'Punc_plus'
+   RULE_LEFTASSOCIATIVITYBINARYOPERATORPREC2_PUNC_MINUS                                            =  16, // <LeftAssociativityBinaryOperatorPrec2> ::= 'Punc_minus'
+   RULE_RELATIONALBINARYOPERATORPREC3_PUNC_GT                                                      =  17, // <RelationalBinaryOperatorPrec3> ::= 'Punc_gt'
+   RULE_RELATIONALBINARYOPERATORPREC3_PUNC_GE                                                      =  18, // <RelationalBinaryOperatorPrec3> ::= 'Punc_ge'
+   RULE_RELATIONALBINARYOPERATORPREC3_PUNC_LT                                                      =  19, // <RelationalBinaryOperatorPrec3> ::= 'Punc_lt'
+   RULE_RELATIONALBINARYOPERATORPREC3_PUNC_LE                                                      =  20, // <RelationalBinaryOperatorPrec3> ::= 'Punc_le'
+   RULE_RELATIONALBINARYOPERATORPREC4_PUNC_EQUAL                                                   =  21, // <RelationalBinaryOperatorPrec4> ::= 'Punc_equal'
+   RULE_RELATIONALBINARYOPERATORPREC4_PUNC_NOT_EQUAL                                               =  22, // <RelationalBinaryOperatorPrec4> ::= 'Punc_not_equal'
+   RULE_LEFTASSOCIATIVITYLOGICALBINARYOPERATORPREC5_KEYWORD_AND                                    =  23, // <LeftAssociativityLogicalBinaryOperatorPrec5> ::= 'Keyword_and'
+   RULE_LEFTASSOCIATIVITYLOGICALBINARYOPERATORPREC6_KEYWORD_OR                                     =  24, // <LeftAssociativityLogicalBinaryOperatorPrec6> ::= 'Keyword_or'
+   RULE_RIGHTASSOCIATIVITYASSIGNMENTBINARYOPERATORPREC7_PUNC_ASSIGN                                =  25, // <RightAssociativityAssignmentBinaryOperatorPrec7> ::= 'Punc_assign'
+   RULE_EXPRESSIONWITHSTATEMENTSOPENINGWEDGE                                                       =  26, // <ExpressionWithStatementsOpeningWedge> ::= 
+   RULE_EXPRESSIONWITHSTATEMENTSCLOSINGWEDGE                                                       =  27, // <ExpressionWithStatementsClosingWedge> ::= 
+   RULE_CONSTANT                                                                                   =  28, // <Constant> ::= <NumberConstant>
+   RULE_CONSTANT2                                                                                  =  29, // <Constant> ::= <StringConstant>
+   RULE_CONSTANT3                                                                                  =  30, // <Constant> ::= <BooleanConstant>
+   RULE_CONSTANT4                                                                                  =  31, // <Constant> ::= <NilConstant>
+   RULE_IDENTIFIERLIST_IDENTIFIER                                                                  =  32, // <IdentifierList> ::= Identifier
+   RULE_IDENTIFIERLIST_IDENTIFIER_PUNC_COMMA                                                       =  33, // <IdentifierList> ::= Identifier 'Punc_comma' <IdentifierList>
+   RULE_IDENTIFIERLIST                                                                             =  34, // <IdentifierList> ::= 
+   RULE_FUNCTIONSTATEMENTOPENING_KEYWORD_FUNCTION_PUNC_LPARENTHESIS_PUNC_RPARENTHESIS              =  35, // <FunctionStatementOpening> ::= 'Keyword_function' 'Punc_lparenthesis' <IdentifierList> 'Punc_rparenthesis'
+   RULE_FUNCTIONSTATEMENTOPENING_KEYWORD_FUNCTION_IDENTIFIER_PUNC_LPARENTHESIS_PUNC_RPARENTHESIS   =  36, // <FunctionStatementOpening> ::= 'Keyword_function' Identifier 'Punc_lparenthesis' <IdentifierList> 'Punc_rparenthesis'
+   RULE_FUNCTIONDEFINITION                                                                         =  37, // <FunctionDefinition> ::= <FunctionStatementOpening> <Block>
+   RULE_FUNCTIONEXPRESSION                                                                         =  38, // <FunctionExpression> ::= <FunctionExpressionOpening> <FunctionDefinition> <FunctionExpressionClosing>
+   RULE_FUNCTIONEXPRESSIONOPENING_PUNC_LPARENTHESIS                                                =  39, // <FunctionExpressionOpening> ::= 'Punc_lparenthesis' <ExpressionWithStatementsOpeningWedge>
+   RULE_FUNCTIONEXPRESSIONCLOSING_PUNC_RPARENTHESIS                                                =  40, // <FunctionExpressionClosing> ::= <ExpressionWithStatementsClosingWedge> 'Punc_rparenthesis'
+   RULE_LVALUE_IDENTIFIER                                                                          =  41, // <Lvalue> ::= Identifier
+   RULE_LVALUE_PUNC_COLONCOLON_IDENTIFIER                                                          =  42, // <Lvalue> ::= 'Punc_coloncolon' Identifier
+   RULE_LVALUE_KEYWORD_LOCAL_IDENTIFIER                                                            =  43, // <Lvalue> ::= 'Keyword_local' Identifier
+   RULE_LVALUE                                                                                     =  44, // <Lvalue> ::= <Member>
+   RULE_MEMBER_PUNC_DOT_IDENTIFIER                                                                 =  45, // <Member> ::= <Lvalue> 'Punc_dot' Identifier
+   RULE_MEMBER_PUNC_LBRACKET_PUNC_RBRACKET                                                         =  46, // <Member> ::= <Lvalue> 'Punc_lbracket' <Expression> 'Punc_rbracket'
+   RULE_MEMBER_PUNC_DOT_IDENTIFIER2                                                                =  47, // <Member> ::= <Call> 'Punc_dot' Identifier
+   RULE_MEMBER_PUNC_LBRACKET_PUNC_RBRACKET2                                                        =  48, // <Member> ::= <Call> 'Punc_lbracket' <Expression> 'Punc_rbracket'
+   RULE_EXPRESSIONLIST                                                                             =  49, // <ExpressionList> ::= <Expression> <ExpressionList2>
+   RULE_EXPRESSIONLIST2                                                                            =  50, // <ExpressionList> ::= 
+   RULE_EXPRESSIONLIST2_PUNC_COMMA                                                                 =  51, // <ExpressionList2> ::= 'Punc_comma' <Expression> <ExpressionList2>
+   RULE_EXPRESSIONLIST22                                                                           =  52, // <ExpressionList2> ::= 
+   RULE_CALL_PUNC_LPARENTHESIS_PUNC_RPARENTHESIS                                                   =  53, // <Call> ::= <Call> 'Punc_lparenthesis' <ExpressionList> 'Punc_rparenthesis'
+   RULE_CALL_PUNC_LPARENTHESIS_PUNC_RPARENTHESIS2                                                  =  54, // <Call> ::= <Lvalue> 'Punc_lparenthesis' <ExpressionList> 'Punc_rparenthesis'
+   RULE_CALL_PUNC_DOTDOT_IDENTIFIER_PUNC_LPARENTHESIS_PUNC_RPARENTHESIS                            =  55, // <Call> ::= <Lvalue> 'Punc_dotdot' Identifier 'Punc_lparenthesis' <ExpressionList> 'Punc_rparenthesis'
+   RULE_CALL_PUNC_LPARENTHESIS_PUNC_RPARENTHESIS3                                                  =  56, // <Call> ::= <FunctionExpression> 'Punc_lparenthesis' <ExpressionList> 'Punc_rparenthesis'
+   RULE_INDEXEDOBJECTELEMENT_PUNC_LBRACE_PUNC_COLON_PUNC_RBRACE                                    =  57, // <IndexedObjectElement> ::= 'Punc_lbrace' <Expression> 'Punc_colon' <Expression> 'Punc_rbrace'
+   RULE_INDEXEDOBJECTELEMENTLIST_PUNC_COMMA                                                        =  58, // <IndexedObjectElementList> ::= <IndexedObjectElement> 'Punc_comma' <IndexedObjectElementList>
+   RULE_INDEXEDOBJECTELEMENTLIST                                                                   =  59, // <IndexedObjectElementList> ::= <IndexedObjectElement>
+   RULE_OBJECTDEFINITION_PUNC_LBRACKET_PUNC_RBRACKET                                               =  60, // <ObjectDefinition> ::= 'Punc_lbracket' <ExpressionList> 'Punc_rbracket'
+   RULE_OBJECTDEFINITION_PUNC_LBRACKET_PUNC_RBRACKET2                                              =  61, // <ObjectDefinition> ::= 'Punc_lbracket' <IndexedObjectElementList> 'Punc_rbracket'
+   RULE_PRIMARY                                                                                    =  62, // <Primary> ::= <Constant>
+   RULE_PRIMARY2                                                                                   =  63, // <Primary> ::= <Lvalue>
+   RULE_PRIMARY3                                                                                   =  64, // <Primary> ::= <FunctionExpression>
+   RULE_PRIMARY4                                                                                   =  65, // <Primary> ::= <Call>
+   RULE_PRIMARY5                                                                                   =  66, // <Primary> ::= <ObjectDefinition>
+   RULE_TERM                                                                                       =  67, // <Term> ::= <Primary>
+   RULE_TERM_PUNC_LPARENTHESIS_PUNC_RPARENTHESIS                                                   =  68, // <Term> ::= 'Punc_lparenthesis' <Expression> 'Punc_rparenthesis'
+   RULE_TERM2                                                                                      =  69, // <Term> ::= <UnaryModifier> <Lvalue>
+   RULE_TERM3                                                                                      =  70, // <Term> ::= <Lvalue> <UnaryModifier>
+   RULE_ARITHMEXPRESSIONPREC0                                                                      =  71, // <ArithmExpressionPrec0> ::= <Term>
+   RULE_ARITHMEXPRESSIONPREC02                                                                     =  72, // <ArithmExpressionPrec0> ::= <UnaryOperator> <ArithmExpressionPrec0>
+   RULE_ARITHMEXPRESSIONPREC1                                                                      =  73, // <ArithmExpressionPrec1> ::= <ArithmExpressionPrec0>
+   RULE_ARITHMEXPRESSIONPREC12                                                                     =  74, // <ArithmExpressionPrec1> ::= <ArithmExpressionPrec1> <LeftAssociativityBinaryOperatorPrec1> <Term>
+   RULE_ARITHMEXPRESSIONPREC2                                                                      =  75, // <ArithmExpressionPrec2> ::= <ArithmExpressionPrec1>
+   RULE_ARITHMEXPRESSIONPREC22                                                                     =  76, // <ArithmExpressionPrec2> ::= <ArithmExpressionPrec2> <LeftAssociativityBinaryOperatorPrec2> <ArithmExpressionPrec1>
+   RULE_RELATIONALEXPRESSIONPREC3                                                                  =  77, // <RelationalExpressionPrec3> ::= <ArithmExpressionPrec2>
+   RULE_RELATIONALEXPRESSIONPREC32                                                                 =  78, // <RelationalExpressionPrec3> ::= <ArithmExpressionPrec2> <RelationalBinaryOperatorPrec3> <ArithmExpressionPrec2>
+   RULE_RELATIONALEXPRESSIONPREC4                                                                  =  79, // <RelationalExpressionPrec4> ::= <RelationalExpressionPrec3>
+   RULE_RELATIONALEXPRESSIONPREC42                                                                 =  80, // <RelationalExpressionPrec4> ::= <RelationalExpressionPrec3> <RelationalBinaryOperatorPrec4> <RelationalExpressionPrec3>
+   RULE_LOGICALEXPRESSIONPREC5                                                                     =  81, // <LogicalExpressionPrec5> ::= <RelationalExpressionPrec4>
+   RULE_LOGICALEXPRESSIONPREC52                                                                    =  82, // <LogicalExpressionPrec5> ::= <LogicalExpressionPrec5Prefix> <RelationalExpressionPrec4>
+   RULE_LOGICALEXPRESSIONPREC5PREFIX                                                               =  83, // <LogicalExpressionPrec5Prefix> ::= <LogicalExpressionPrec5> <LeftAssociativityLogicalBinaryOperatorPrec5>
+   RULE_LOGICALEXPRESSIONPREC6                                                                     =  84, // <LogicalExpressionPrec6> ::= <LogicalExpressionPrec5>
+   RULE_LOGICALEXPRESSIONPREC62                                                                    =  85, // <LogicalExpressionPrec6> ::= <LogicalExpressionPrec6Prefix> <LogicalExpressionPrec5>
+   RULE_LOGICALEXPRESSIONPREC6PREFIX                                                               =  86, // <LogicalExpressionPrec6Prefix> ::= <LogicalExpressionPrec6> <LeftAssociativityLogicalBinaryOperatorPrec6>
+   RULE_ASSIGNMENTEXPRESSIONPREC7                                                                  =  87, // <AssignmentExpressionPrec7> ::= <LogicalExpressionPrec6>
+   RULE_ASSIGNMENTEXPRESSIONPREC72                                                                 =  88, // <AssignmentExpressionPrec7> ::= <Lvalue> <RightAssociativityAssignmentBinaryOperatorPrec7> <AssignmentExpressionPrec7>
+   RULE_EXPRESSION                                                                                 =  89, // <Expression> ::= <AssignmentExpressionPrec7>
+   RULE_BLOCK_PUNC_LBRACE_PUNC_RBRACE                                                              =  90, // <Block> ::= 'Punc_lbrace' <StatementList> 'Punc_rbrace'
+   RULE_RETURNSTATEMENT_KEYWORD_RETURN_PUNC_SEMICOLON                                              =  91, // <ReturnStatement> ::= 'Keyword_return' 'Punc_semicolon'
+   RULE_RETURNSTATEMENT_KEYWORD_RETURN_PUNC_SEMICOLON2                                             =  92, // <ReturnStatement> ::= 'Keyword_return' <Expression> 'Punc_semicolon'
+   RULE_WHILESTATEMENT_KEYWORD_WHILE_PUNC_LPARENTHESIS_PUNC_RPARENTHESIS                           =  93, // <WhileStatement> ::= 'Keyword_while' 'Punc_lparenthesis' <Expression> 'Punc_rparenthesis' <Statement>
+   RULE_FORSTATEMENT_KEYWORD_FOR_PUNC_LPARENTHESIS_PUNC_SEMICOLON_PUNC_SEMICOLON_PUNC_RPARENTHESIS =  94, // <ForStatement> ::= 'Keyword_for' 'Punc_lparenthesis' <ExpressionList> 'Punc_semicolon' <Expression> 'Punc_semicolon' <ExpressionList> 'Punc_rparenthesis' <Statement>
+   RULE_IFELSESTATEMENT_KEYWORD_IF_PUNC_LPARENTHESIS_PUNC_RPARENTHESIS                             =  95, // <IfElseStatement> ::= 'Keyword_if' 'Punc_lparenthesis' <Expression> 'Punc_rparenthesis' <Statement>
+   RULE_IFELSESTATEMENT_KEYWORD_IF_PUNC_LPARENTHESIS_PUNC_RPARENTHESIS_KEYWORD_ELSE                =  96, // <IfElseStatement> ::= 'Keyword_if' 'Punc_lparenthesis' <Expression> 'Punc_rparenthesis' <Statement> 'Keyword_else' <Statement>
+   RULE_STATEMENT_PUNC_SEMICOLON                                                                   =  97, // <Statement> ::= 'Punc_semicolon'
+   RULE_STATEMENT_KEYWORD_BREAK_PUNC_SEMICOLON                                                     =  98, // <Statement> ::= 'Keyword_break' 'Punc_semicolon'
+   RULE_STATEMENT_KEYWORD_CONTINUE_PUNC_SEMICOLON                                                  =  99, // <Statement> ::= 'Keyword_continue' 'Punc_semicolon'
+   RULE_STATEMENT_PUNC_SEMICOLON2                                                                  = 100, // <Statement> ::= <Expression> 'Punc_semicolon'
+   RULE_STATEMENT                                                                                  = 101, // <Statement> ::= <Block>
+   RULE_STATEMENT2                                                                                 = 102, // <Statement> ::= <ReturnStatement>
+   RULE_STATEMENT3                                                                                 = 103, // <Statement> ::= <WhileStatement>
+   RULE_STATEMENT4                                                                                 = 104, // <Statement> ::= <ForStatement>
+   RULE_STATEMENT5                                                                                 = 105, // <Statement> ::= <IfElseStatement>
+   RULE_STATEMENT6                                                                                 = 106, // <Statement> ::= <FunctionDefinition>
+   RULE_STATEMENTLIST                                                                              = 107, // <StatementList> ::= <Statement> <StatementList>
+   RULE_STATEMENTLIST2                                                                             = 108, // <StatementList> ::= 
+   RULE_PROGRAM                                                                                    = 109  // <Program> ::= <StatementList>

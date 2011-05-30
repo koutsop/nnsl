@@ -82,28 +82,30 @@ namespace gr.uoc.csd.Alpha.Compilation.ParserConstants {
         LeftAssociativityLogicalBinaryOperatorPrec5     =  77, // <LeftAssociativityLogicalBinaryOperatorPrec5>
         LeftAssociativityLogicalBinaryOperatorPrec6     =  78, // <LeftAssociativityLogicalBinaryOperatorPrec6>
         LogicalExpressionPrec5                          =  79, // <LogicalExpressionPrec5>
-        LogicalExpressionPrec6                          =  80, // <LogicalExpressionPrec6>
-        Lvalue                                          =  81, // <Lvalue>
-        Member                                          =  82, // <Member>
-        NilConstant                                     =  83, // <NilConstant>
-        NumberConstant                                  =  84, // <NumberConstant>
-        ObjectDefinition                                =  85, // <ObjectDefinition>
-        Primary                                         =  86, // <Primary>
-        Program                                         =  87, // <Program>
-        RelationalBinaryOperatorPrec3                   =  88, // <RelationalBinaryOperatorPrec3>
-        RelationalBinaryOperatorPrec4                   =  89, // <RelationalBinaryOperatorPrec4>
-        RelationalExpressionPrec3                       =  90, // <RelationalExpressionPrec3>
-        RelationalExpressionPrec4                       =  91, // <RelationalExpressionPrec4>
-        ReturnStatement                                 =  92, // <ReturnStatement>
-        RightAssociativityAssignmentBinaryOperatorPrec7 =  93, // <RightAssociativityAssignmentBinaryOperatorPrec7>
-        Statement                                       =  94, // <Statement>
-        StatementList                                   =  95, // <StatementList>
-        StringConstant                                  =  96, // <StringConstant>
-        Term                                            =  97, // <Term>
-        UnaryModifier                                   =  98, // <UnaryModifier>
-        UnaryOperator                                   =  99, // <UnaryOperator>
-        WhileStatement                                  = 100, // <WhileStatement>
-        SIZE                                            = 101
+        LogicalExpressionPrec5Prefix                    =  80, // <LogicalExpressionPrec5Prefix>
+        LogicalExpressionPrec6                          =  81, // <LogicalExpressionPrec6>
+        LogicalExpressionPrec6Prefix                    =  82, // <LogicalExpressionPrec6Prefix>
+        Lvalue                                          =  83, // <Lvalue>
+        Member                                          =  84, // <Member>
+        NilConstant                                     =  85, // <NilConstant>
+        NumberConstant                                  =  86, // <NumberConstant>
+        ObjectDefinition                                =  87, // <ObjectDefinition>
+        Primary                                         =  88, // <Primary>
+        Program                                         =  89, // <Program>
+        RelationalBinaryOperatorPrec3                   =  90, // <RelationalBinaryOperatorPrec3>
+        RelationalBinaryOperatorPrec4                   =  91, // <RelationalBinaryOperatorPrec4>
+        RelationalExpressionPrec3                       =  92, // <RelationalExpressionPrec3>
+        RelationalExpressionPrec4                       =  93, // <RelationalExpressionPrec4>
+        ReturnStatement                                 =  94, // <ReturnStatement>
+        RightAssociativityAssignmentBinaryOperatorPrec7 =  95, // <RightAssociativityAssignmentBinaryOperatorPrec7>
+        Statement                                       =  96, // <Statement>
+        StatementList                                   =  97, // <StatementList>
+        StringConstant                                  =  98, // <StringConstant>
+        Term                                            =  99, // <Term>
+        UnaryModifier                                   = 100, // <UnaryModifier>
+        UnaryOperator                                   = 101, // <UnaryOperator>
+        WhileStatement                                  = 102, // <WhileStatement>
+        SIZE                                            = 103
     }
     
 
@@ -218,6 +220,7 @@ namespace gr.uoc.csd.Alpha.Compilation.ParserConstants {
         StatementList___Statement__StatementList                                                                                                               = 107, // <StatementList> ::= <Statement> <StatementList>
         StatementList                                                                                                                                          = 108, // <StatementList> ::= 
         Program___StatementList                                                                                                                                = 109, // <Program> ::= <StatementList>
+
         SIZE                                                                                                                                                   = 110
     }
 }

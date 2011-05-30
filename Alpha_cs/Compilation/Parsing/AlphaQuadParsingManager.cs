@@ -6,7 +6,8 @@
 
         private readonly Quads.AbstractQuadManager quads;
         private readonly SymbolTable.SymbolTable symbolTable;
-        public AlphaQuadParsingManager (Quads.AbstractQuadManager quadManager, SymbolTable.SymbolTable symbolTable) {
+        public AlphaQuadParsingManager (Quads.AbstractQuadManager quadManager, SymbolTable.SymbolTable symbolTable) :
+            base("$avril_") {
             quads = quadManager;
             this.symbolTable = symbolTable;
         }
@@ -156,8 +157,15 @@
 
             D.Assert(id.IsString());
 
-            
-            result = rhs[0]; // TODO lookup and replace with symbol
+            SymbolTable.Symbol variable;
+            string name = id.StringValue;
+            int line = 344; // TODO get line, how??
+            if (InFunction)
+                symbolTable.LookupOrInsertLocalVariable(out variable, name, line);
+            else
+                symbolTable.LookupOrInsertProgramVariable(out variable, name, line);
+
+            result = TokenValue.CreateVariable(variable);
 
             return 0;
         }
@@ -287,7 +295,13 @@
         }
 
         public override int Primary___Lvalue (out TokenValue result, TokenValue[] rhs) {
-            throw new System.NotImplementedException();
+            D.Assert(rhs.Length == 1);
+
+            TokenValue lvalue = rhs[0];
+
+            result = lvalue;
+
+            return 0;
         }
 
         public override int Primary___Call (out TokenValue result, TokenValue[] rhs) {
@@ -431,13 +445,19 @@
             quads.EmitAssign(1821, lval, expr);
 
 
-            throw new System.NotImplementedException();
+            throw new System.NotImplementedException(); // TODO
             //result = TokenValue.CreateAssignmentExpression(
 
         }
 
         public override int Expression___AssignmentExpressionPrec7 (out TokenValue result, TokenValue[] rhs) {
-            throw new System.NotImplementedException();
+            D.Assert(rhs.Length == 1);
+
+            TokenValue expression = rhs[0];
+
+            result = expression;
+
+            return 0;
         }
 
         public override int Block___Punc_lbrace__StatementList__Punc_rbrace (out TokenValue result, TokenValue[] rhs) {
@@ -481,7 +501,15 @@
         }
 
         public override int Statement___Expression__Punc_semicolon (out TokenValue result, TokenValue[] rhs) {
-            throw new System.NotImplementedException();
+            D.Assert(rhs.Length == 2);
+
+            TokenValue expression = rhs[0];
+            D.Assert(rhs[1] == null);
+
+            // TODO make a statement token value
+            result = expression;
+
+            return 0;
         }
 
         public override int Statement___Block (out TokenValue result, TokenValue[] rhs) {
@@ -621,11 +649,23 @@
         }
 
         public override int LogicalExpressionPrec5Prefix___LogicalExpressionPrec5__LeftAssociativityLogicalBinaryOperatorPrec5 (out TokenValue result, TokenValue[] rhs) {
-            throw new System.NotImplementedException();
+            D.Assert(rhs.Length == 1);
+
+            TokenValue expression = rhs[0];
+
+            result = expression;
+
+            return 0;
         }
 
         public override int LogicalExpressionPrec6___LogicalExpressionPrec6Prefix__LogicalExpressionPrec5 (out TokenValue result, TokenValue[] rhs) {
-            throw new System.NotImplementedException();
+            D.Assert(rhs.Length == 1);
+
+            TokenValue expression = rhs[0];
+
+            result = expression;
+
+            return 0;
         }
 
         public override int LogicalExpressionPrec6Prefix___LogicalExpressionPrec6__LeftAssociativityLogicalBinaryOperatorPrec6 (out TokenValue result, TokenValue[] rhs) {
